@@ -9,10 +9,15 @@ import {Text, View, StyleSheet,  TouchableOpacity} from 'react-native';
     exibir e estilizar a linha
     Veja que PeopleListItem recebe navigateToPeopleDetail de PeopleList e executa o mesmo
 */
-const TodoListItem = ({ todo, onPressTodo }) => (
-    <TouchableOpacity onPress={onPressTodo}>
+const TodoListItem = ({ todo, onPressTodo, onLongPressTodo }) => (
+    <TouchableOpacity 
+    onPress={onPressTodo}
+    onLongPress={onLongPressTodo}>
         <View style={styles.line}>
-            <Text style={styles.lineText}>
+            <Text style={[
+                styles.lineText,
+                todo.done ? styles.lineThough: null
+                ]}>
                 { todo.text }
             </Text>
         </View>
@@ -38,6 +43,9 @@ const styles = StyleSheet.create ({
         flex: 1,
         marginLeft: 15,
         borderRadius: 50
+    },
+    lineThough: {
+        textDecorationLine: 'line-through'
     }
 })
 
