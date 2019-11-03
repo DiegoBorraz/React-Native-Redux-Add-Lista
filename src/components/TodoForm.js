@@ -24,6 +24,7 @@ import { connect } from 'react-redux';
 
     onPress(){
         this.props.dispatchAddTodo(this.state.text)
+        this.setState({ text: '' });
     }
 
     render(){
@@ -57,10 +58,8 @@ const styles = StyleSheet.create({
         flex: 1
     }
 });
-const mapDispatchToProps = dispatch => {
-    return {
-        dispatchAddTodo: text => dispatch(addTodo(text))
-    }
-}
 
-export default connect(null, mapDispatchToProps)(TodoForm);
+
+export default connect(null, {
+    dispatchAddTodo: addTodo
+})(TodoForm);
